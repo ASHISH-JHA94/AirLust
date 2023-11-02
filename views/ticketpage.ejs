@@ -1,0 +1,20 @@
+<% layout("/layouts/boiler") %>
+
+<body>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2><b>User and Flight Information</b></h2>
+            <ul class="list-group">
+                <li class="list-group-item"><b>Name:</b> <%= name %></li>
+                <li class="list-group-item"><b>Email:</b> <%= email %></li>
+                <li class="list-group-item"><b>Phone Number:</b> <%= phoneno %></li>
+                <li class="list-group-item"><b>Date of Birth:</b> <%= dob %></li>
+                <li class="list-group-item"><b>Departs:</b> <%= bookinginfo[0].departs %></li>
+                <li class="list-group-item"><b>Arrives:</b> <%= bookinginfo[0].arrives %></li>
+                <li class="list-group-item"><b>Airliner Name:</b> <%= bookinginfo[0].airlinername %></li>
+                <li class="list-group-item"><b>Departure:</b> <%= bookinginfo[0].departure %></li>
+            </ul>
+            <p>Thank you for booking your flight!</p>
+        </div>
+    </div>
+</body>
