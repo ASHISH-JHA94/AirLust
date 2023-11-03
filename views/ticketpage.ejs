@@ -1,22 +1,102 @@
 <% layout("/layouts/boiler") %>
+    <style>
+        .list-group-item {
+            text-align: left;
+        }
 
-<body>
+        .airport {
+            color: blueviolet;
+        }
+
+        .list-group-item {
+            border: none;
+        }
+    </style>
+
+    <body>
+        <br><br>
+        <div class="row">
+            <div class="card col-6 text-center offset-3 override" style="border-radius: 0;">
+                <div class="card-header" style="background-color:white;border:none;">
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                                style="border-radius: 0;background-color: transparent;color:blueviolet;">
+                                <b>
+                                    <%= flight.airlinername%>&nbsp;&bull;&nbsp;
+                                </b>
+                                <%= flight.name %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">
+                        <%= flight.departs %>&nbsp;<i class='fas fa-plane-departure'></i>&nbsp;&#10230;&nbsp;<i
+                                class='fas fa-plane-arrival'></i>&nbsp;<%= flight.arrives %>
+                    </h1>
+                    <p class="card-text">NON-STOP &bull;&nbsp;&#8377;<%= flight.price %>&nbsp;&bull;&nbsp;<%=
+                                flight.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;</p>
+                    <p class="card-text" style="text-align: center;">
+                        This flight starts from
+                        <i class="airport">
+                            <%= flight.deptair %> (<%= flight.departs%>)
+                        </i> and lands at <i class="airport">
+                            <%= flight.arvair %> (<%= flight.arrives%>)
+                        </i>
+                    </p>
+                </div><br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align:left;"><i style="color:blueviolet;">Personal
+                                        Details</i></h5>
+                                <p class="card-text">
+                                <ul class="list-group">
+                                    <li class="list-group-item ovlist"><b> First Name:</b>
+                                        <%= fname %>
+                                    </li>
+                                    <li class="list-group-item ovlist"><b> Last Name:</b>
+                                        <%= lname %>
+                                    </li>
+                                    <li class="list-group-item ovlist"><b>Email:</b>
+                                        <%= email %>
+                                    </li>
+                                    <li class="list-group-item ovlist"><b>Phone Number:</b>
+                                        <%= phoneno %>
+                                    </li>
+                                    <li class="list-group-item ovlist"><b>Date of Birth:</b>
+                                        <%= dob %>
+                                    </li>
+                                </ul><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align:left;"><i style="color:blueviolet;">Invoice Details</i></h5>
+                                <p class="card-text">
+                                    <ul class="list-group">
+                                        <li class="list-group-item ovlist"><b> Amount Payed:</b>
+                                            <%= flight.price %>
+                                        </li>
+                                    </ul><br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 offset-2">
+                    <h2><b style="color: blueviolet;"><br><i class="fa-solid fa-check"></i>&nbsp;&nbsp;Booking Confirmed</b>
+                    </h2>
+
+                    <center>
+                        <h5>Thank you for Booking a flight!</h5>
+                    </center>
+                </div>
+            </div><br><br><br>
+    </body>
     <br><br>
-    <div class="row">
-        <div class="col-8 offset-2">
-            <h2><b>Booking Confirmed</b></h2>
-            <ul class="list-group">
-                <li class="list-group-item"><b> First Name:</b> <%= fname %></li>
-                <li class="list-group-item"><b> Last Name:</b> <%= lname %></li>
-                <li class="list-group-item"><b>Email:</b> <%= email %></li>
-                <li class="list-group-item"><b>Phone Number:</b> <%= phoneno %></li>
-                <li class="list-group-item"><b>Date of Birth:</b> <%= dob %></li>
-                <li class="list-group-item"><b>Departs:</b> <%= bookinginfo[0].departs %></li>
-                <li class="list-group-item"><b>Arrives:</b> <%= bookinginfo[0].arrives %></li>
-                <li class="list-group-item"><b>Airliner Name:</b> <%= bookinginfo[0].airlinername %></li>
-                <li class="list-group-item"><b>Departure:</b> <%= bookinginfo[0].departure %></li>
-            </ul>
-            <p>Thank you for booking your flight!</p>
-        </div>
-    </div>
-</body>

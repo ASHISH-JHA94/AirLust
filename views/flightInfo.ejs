@@ -45,6 +45,16 @@
     </style>
 
     <body>
+        <% if (noFlightsMessage != '') { %>
+            <br><br><br>
+            <div class="alert alert-danger">
+                <h3><i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;<%= noFlightsMessage %></h3>
+                <p>
+                    The flight you're looking for does not exist. Try another route or date of departure.
+
+                </p>
+            </div>
+          <% } %>
         <% for(flight of AirInfo){ %>
 
             <br><br>
