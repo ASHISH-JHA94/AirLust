@@ -1,0 +1,28 @@
+<% layout("/layouts/boiler") %>
+    <br><br><br><br>
+    <style>
+        .row{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 50vh;
+        }
+    </style>
+    <div class="row">
+        <div class="col-6 offset-0">
+            <h2><b>Log-In</b></h2>
+            <form method="POST" action="/userinfo" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" placeholder="Enter email" class="form-control" required>
+                    </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date Of Birth</label>
+                    <input type="date" name="dob" placeholder="Enter Date of Birth" class="form-control" required>
+                </div>
+                <button class="btn btn-success outline-green"> Login </button>
+            </form>
+        </div>

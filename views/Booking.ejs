@@ -1,41 +1,74 @@
 <% layout("/layouts/boiler") %>
+    <style>
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 
     <body>
-
+        <br><br><br>
         <div class="row">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <ul class="list-group list-group-flush">
-                    <% if (bookinginfo && bookinginfo.length > 0) { %>
-                        <li class="list-group-item"><%= bookinginfo[0].departs %></li>
-                        <li class="list-group-item"><%= bookinginfo[0].arrives %></li>
-                        <li class="list-group-item"><%= bookinginfo[0].airlinername %></li>
-                        <li class="list-group-item"><%= bookinginfo[0].departure %></li>
-                    <% } else { %>
-                        <li class="list-group-item">No information available</li>
-                    <% } %>
-                    
-                </ul>
-              </div>
+            <div class="card col-8 text-center override" style="border-radius: 0;">
+                <div class="card-header" style="background-color:white;border:none;">
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                                style="border-radius: 0;background-color: transparent;color:blueviolet;">
+                                <b>
+                                    <%= flight.airlinername%>&nbsp;&bull;&nbsp;
+                                </b>
+                                <%= flight.name %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">
+                        <%= flight.departs %>&nbsp;<i class='fas fa-plane-departure'></i>&nbsp;&#10230;&nbsp;<i
+                                class='fas fa-plane-arrival'></i>&nbsp;<%= flight.arrives %>
+                    </h1>
+                    <p class="card-text">NON-STOP &bull;&nbsp;&#8377;<%= flight.price %>&nbsp;&bull;&nbsp;<%=
+                                flight.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;</p>
+                    <p class="card-text" style="text-align: center;">
+                        This flight starts from
+                        <i class="airport">
+                            <%= flight.deptair %> (<%= flight.departs%>)
+                        </i> and lands at <i class="airport">
+                            <%= flight.arvair %> (<%= flight.arrives%>)
+                        </i>
+                    </p>
+                </div>
+            </div><br><br>
 
-            <div class="col-8 offset-2">
+            <div class="col-8 offset-0">
                 <h2><b>BOOK NOW</b></h2>
                 <form method="POST" action="/ticket" class="needs-validation" novalidate>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" placeholder="Enter name of passenger" class="form-control" required>
+                        <label for="fname" class="form-label">First Name</label>
+                        <input type="text" name="fname" placeholder="First Name" class="form-control"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lname" class="form-label">Last Name</label>
+                        <input type="text" name="lname" placeholder="Last Name" class="form-control"
+                            required>
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" placeholder="Enter email" class="form-control" required> </textarea>
+                        <input type="email" name="email" placeholder="Enter email" class="form-control" required>
+                        </textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="phoneno" class="form-label">Phone Number</label>
                         <input type="number" placeholder="Enter Phone Number" name="phoneno" class="form-control">
                     </div>
-                    
+
 
                     <div class="mb-3">
                         <label for="dob" class="form-label">Date Of Birth</label>
@@ -43,16 +76,9 @@
                     </div>
                     <input type="hidden" name="flightId" value="<%= flightId %>">
                     <!-- <input type="hidden" name="userId" value="> -->
-
-
-
-
-                    <button  class="btn btn-primary">Save</button>
-
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>
 
     </body>
-
-    
