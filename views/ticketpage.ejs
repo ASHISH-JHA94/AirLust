@@ -67,7 +67,7 @@
                                         <%= phoneno %>
                                     </li>
                                     <li class="list-group-item ovlist"><b>Date of Birth:</b>
-                                        <%= dob %>
+                                        <%= formatDOB(dob) %>
                                     </li>
                                 </ul><br>
                                 </p>
@@ -77,20 +77,38 @@
                     <div class="col-sm-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title" style="text-align:left;"><i style="color:blueviolet;">Invoice Details</i></h5>
+                                <h5 class="card-title" style="text-align:left;"><i style="color:blueviolet;">Invoice
+                                        Details</i></h5>
                                 <p class="card-text">
-                                    <ul class="list-group">
-                                        <li class="list-group-item ovlist"><b> Amount Payed:</b>
-                                            <%= flight.price %>
+                                <ul class="list-group">
+                                    <li class="list-group-item ovlist"><b> Amount Payed:</b>
+                                        <%= flight.price + flight.tax %> <br><i style="font-size: 0.80em;">(Amount Payed
+                                                is inclusive of tax.)</i>
+                                    </li>
+                                </ul><br>
+                                </p>
+                                <h5 class="card-title" style="text-align:left;"><i style="color:blueviolet;">Seat
+                                        Details</i></h5>
+                                <p class="card-text">
+                                <ul class="list-group">
+                                    <li class="list-group-item ovlist"><b> Seat Class:</b>
+                                        <%= flight.class %> <br>
+                                    </li>
+                                    <% for (let i=0; i < bookinginfo.length; i++) { %>
+                                        <li class="list-group-item">
+                                            <b>Seat Number: </b>
+                                            <%= getSeat(bookinginfo[i].seatnumber) %>
                                         </li>
-                                    </ul><br>
+                                        <% } %>
+                                </ul><br>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-8 offset-2">
-                    <h2><b style="color: blueviolet;"><br><i class="fa-solid fa-check"></i>&nbsp;&nbsp;Booking Confirmed</b>
+                    <h2><b style="color: blueviolet;"><br><i class="fa-solid fa-check"></i>&nbsp;&nbsp;Booking
+                            Confirmed</b>
                     </h2>
 
                     <center>

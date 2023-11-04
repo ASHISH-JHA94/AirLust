@@ -74,13 +74,14 @@
                         <%= flight.departs %>&nbsp;<i class='fas fa-plane-departure'></i>&nbsp;&#10230;&nbsp;<i class='fas fa-plane-arrival'></i>&nbsp;<%= flight.arrives %>
                     </h1>
                     <p class="card-text">NON-STOP &bull;&nbsp;&#8377;<%= flight.price %>&nbsp;&bull;&nbsp;<%=
-                                flight.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;</p>
+                                flight.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;&bull;&nbsp;<i class="fa fa-indian-rupee-sign"></i>&nbsp;<%= flight.class %>&nbsp;(AVBL: <%= flight.class_count%>)</p>
                     <p class="card-text" style="text-align: center;">
                         This flight starts from
                         <i class="airport"><%= flight.deptair %> (<%= flight.departs%>)</i> and lands at <i class="airport">
                                 <%= flight.arvair %> (<%= flight.arrives%>)</i>
                     </p>
-                    <a href="/flights/<%= flight.flight_id  %>" class="btn btn-primary">Book a Ticket&nbsp;&nbsp;<i class='far fa-check-circle'></i></a>
+                    <i>Extra Tax (Exclusive of price,&nbsp;Applied for Seat Preference): <i class="fa fa-indian-rupee-sign"></i>&nbsp;<%= flight.tax %></i><br>
+                    <br><a href="/flights/<%= flight.flight_id  %>/<%= flight.class %>" class="btn btn-primary">Book a Ticket&nbsp;&nbsp;<i class='far fa-check-circle'></i></a>
                 </div>
             </div><br><br>
             <!--div class="card" style="width: 18rem;">
