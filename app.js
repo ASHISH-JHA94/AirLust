@@ -187,6 +187,24 @@ app.post('/ticket/', (req, res) => {
           return;
         }
         let bookinginfo = results;
+        const updateq=`
+        UPDATE seats SET seat_status='UNAVAILABLE'
+          WHERE flight_id IN (
+          SELECT flight_id from flights WHERE flight_id=${flightId})
+          AND seat_number IN (
+            SELECT seat_number from passengers WHERE email='${email}'
+          );
+        `
+        connection.query(updateq,(err, results) => {
+          if (err) {
+            connection.end();
+            console.error(err);
+            res.send("An error occurred in updating status");
+            return;
+          }
+          let updi=results;
+          console.log(updi);
+        });
         res.render('ticketPage.ejs', {
           flightId,
           fname,

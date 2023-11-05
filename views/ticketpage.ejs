@@ -94,12 +94,6 @@
                                     <li class="list-group-item ovlist"><b> Seat Class:</b>
                                         <%= flight.class %> <br>
                                     </li>
-                                    <% for (let i=0; i < bookinginfo.length; i++) { %>
-                                        <li class="list-group-item">
-                                            <b>Seat Number: </b>
-                                            <%= getSeat(bookinginfo[i].seatnumber) %>
-                                        </li>
-                                        <% } %>
                                 </ul><br>
                                 </p>
                             </div>
@@ -114,6 +108,9 @@
                     <center>
                         <h5>Thank you for Booking a flight!</h5>
                     </center>
+                    <p>
+                        Visit <i style="color:blueviolet;">My Trips</i> to view Trip and Seat Details!
+                    </p>
                 </div>
             </div><br><br><br>
     </body>
