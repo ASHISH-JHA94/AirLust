@@ -13,7 +13,8 @@
                 <div class="card">
                     <h5 class="card-header"><i class="fa-solid fa-suitcase-rolling"></i>&nbsp;Trip Details</h5>
                     <div class="card-body">
-                        <h5 class="card-title" style="color: blueviolet;"><i class="fa-solid fa-user-check"></i>&nbsp;Passenger Details</h5>
+                        <h5 class="card-title" style="color: blueviolet;"><i
+                                class="fa-solid fa-user-check"></i>&nbsp;Passenger Details</h5>
                         <ul class="list-group">
                             <li class="list-group-item"><b> First Name:</b>
                                 <%= user.first_name %>
@@ -31,23 +32,39 @@
                                 <%= formatDOB(user.dob) %>
                             </li>
                             <hr>
-                            <h5 class="card-title" style="color:blueviolet"><i class="fa-solid fa-plane"></i>&nbsp;Flight Details</h5>
-                            <div class="card-body"><center>
-                                <h1 class="card-title">
-                                    <%= user.departure_iata %>&nbsp;<i class='fas fa-plane-departure'></i>&nbsp;&#10230;&nbsp;<i
-                                            class='fas fa-plane-arrival'></i>&nbsp;<%= user.arrival_iata %>
-                                </h1>
-                                <p class="card-text">NON-STOP &bull;&nbsp;&#8377;<%= user.price %>&nbsp;&bull;&nbsp;<%=
-                                            user.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;</p>
-                                <p class="card-text" style="text-align: center;">
-                                    This flight starts from
-                                    <i class="airport">
-                                        <%= user.departure_airport %> (<%= user.departure_iata%>)
-                                    </i> and lands at <i class="airport">
-                                        <%= user.arrival_airport %> (<%= user.arrival_iata%>)
-                                    </i>
-                                </p></center>
+                            <h5 class="card-title" style="color:blueviolet"><i
+                                    class="fa-solid fa-plane"></i>&nbsp;Flight Details&nbsp;&bull;&nbsp;<%= flight.airlinername %>
+                                    &nbsp;&bull;&nbsp;<%=flight.name%></h5>
+                            <div class="card-body">
+                                <center>
+                                    <h1 class="card-title">
+                                        <%= user.departure_iata %>&nbsp;<i
+                                                class='fas fa-plane-departure'></i>&nbsp;&#10230;&nbsp;<i
+                                                class='fas fa-plane-arrival'></i>&nbsp;<%= user.arrival_iata %>
+                                    </h1>
+                                    <p class="card-text">NON-STOP &bull;&nbsp;&#8377;<%= user.price %>&nbsp;&bull;&nbsp;
+                                            <%= user.duration %>&nbsp;&nbsp;<i class="fa fa-plane"></i>&nbsp;</p>
+                                    <p class="card-text" style="text-align: center;">
+                                        This flight starts from
+                                        <i class="airport">
+                                            <%= user.departure_airport %> (<%= user.departure_iata%>)
+                                        </i> and lands at <i class="airport">
+                                            <%= user.arrival_airport %> (<%= user.arrival_iata%>)
+                                        </i>
+                                    </p>
+                                </center>
                             </div>
+                            <hr>
+                            <h5 class="card-title" style="color: blueviolet;"><i
+                                    class="fa-solid fa-user-check"></i>&nbsp;Seat Details</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item"><b>Seat Number:</b>
+                                    <%= getSeat(user.seat_number) %>
+                                </li>
+                                <li class="list-group-item"><b>Seat Class:</b>
+                                    <%= user.seat_class %>
+                                </li>
+                                <hr>
                     </div>
                 </div>
 
