@@ -15,17 +15,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine("ejs", ejsMate);
 
 
+app.get("/", (req, res) => {
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'airline_db',
+    password: 'ashish1234',
 
-
-app.get("/",(req,res)=>{
-      const connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      database: 'airline_db',
-      password: 'Q5d2qvhx6x!?1a2b3',
-  
+  });
+  res.render("home.ejs")
 });
-res.render("home.ejs")});
 
 app.get('/flights/:flightId/:seatClass', (req, res) => {
   const flightId = req.params.flightId;
@@ -34,13 +33,26 @@ app.get('/flights/:flightId/:seatClass', (req, res) => {
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
-
-});
-let q=`SELECT f.departure_dt as departure, f.arrival_dt as arrival, f.airline_id as airliner, a1.iata_code as departs, a2.iata_code as arrives,ar.airline_name as airlinername FROM flights f 
-JOIN airports a1 ON f.departure_icao=a1.icao_code 
-JOIN airports a2 ON f.arrival_icao=a2.icao_code
-JOIN airline ar ON f.airline_id=ar.airline_id WHERE f.flight_id='${flightId}'`;
+    password: 'ashish1234',
+  });
+  let q = `SELECT 
+              f.departure_dt as departure, 
+              f.arrival_dt as arrival, 
+              f.airline_id as airliner, 
+              a1.iata_code as departs, 
+              a2.iata_code as arrives,
+              ar.airline_name as airlinername,
+              s.seat_status as seatstatus,
+              s.seat_class as seatclass,
+              s.seat_tax as tax
+            FROM flights f 
+            JOIN airports a1 ON f.departure_icao=a1.icao_code 
+            JOIN airports a2 ON f.arrival_icao=a2.icao_code
+            JOIN airline ar ON f.airline_id=ar.airline_id 
+            JOIN seats s ON s.flight_id=f.flight_id
+            WHERE f.flight_id='${flightId}' AND s.seat_status='AVAILABLE' AND s.seat_class='${seatClass}'
+            ORDER BY RAND()
+            LIMIT 1;`;
 
   connection.query(q, (err, results) => {
     if (err) {
@@ -122,12 +134,16 @@ app.post('/ticket/', (req, res) => {
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
+    password: 'ashish1234',
+  });
 
-});
-const insertPassengerQuery = `
-    INSERT INTO passengers (flight_id,first_name,last_name, email, phone, dob)
-    VALUES (?,?,?,?,?,?);
+  const insertPassengerQuery = `
+    INSERT INTO passengers (flight_id, first_name, last_name, email, phone, dob, seat_class, seat_number)
+    SELECT s.flight_id, ?, ?, ?, ?, ?, ?, s.seat_number
+    FROM seats s
+    WHERE s.flight_id = ? AND s.seat_status = 'AVAILABLE' AND s.seat_class = ?
+    ORDER BY RAND()
+    LIMIT 1;
   `;
 
   connection.query(
@@ -140,8 +156,6 @@ const insertPassengerQuery = `
         res.send("An error occurred while inserting passenger data.");
         return;
       }
-
-      
       const passengerId = results.insertId;
 
       let q = `
