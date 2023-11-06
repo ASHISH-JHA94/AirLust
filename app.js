@@ -25,7 +25,7 @@ app.get("/",(req,res)=>{
       host: 'localhost',
       user: 'root',
       database: 'airline_db',
-      password: 'Q5d2qvhx6x!?1a2b3',
+      password: 'ashish1234',
   
 });
 res.render("home.ejs")});
@@ -37,7 +37,7 @@ app.get('/flights/:flightId', (req, res) => {
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
+    password: 'ashish1234',
 
 });
 let q=`SELECT f.departure_dt as departure, f.arrival_dt as arrival, f.airline_id as airliner, a1.iata_code as departs, a2.iata_code as arrives,ar.airline_name as airlinername FROM flights f 
@@ -70,7 +70,7 @@ app.post("/flightInfo", (req, res) => {
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
+    password: 'ashish1234',
   });
 
   let q = `SELECT f.flight_id,f.flight_name as name,f.duration as duration,f.price as price,f.departure_dt as departure,
@@ -113,9 +113,8 @@ app.post('/ticket', (req, res) => {
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
-
-});
+    password: 'ashish1234',
+  });
 const insertPassengerQuery = `
     INSERT INTO passengers (flight_id,first_name,last_name, email, phone, dob)
     VALUES (?,?,?,?,?,?);
@@ -134,7 +133,7 @@ const insertPassengerQuery = `
       }
 
       
-      const passengerId = results.insertId;
+      
 
       
     }
@@ -171,7 +170,7 @@ app.post("/userinfo",(req,res)=>{
     host: 'localhost',
     user: 'root',
     database: 'airline_db',
-    password: 'Q5d2qvhx6x!?1a2b3',
+    password: 'ashish1234',
 
 });
   let q=`SELECT 
